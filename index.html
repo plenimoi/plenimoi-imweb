@@ -38,7 +38,11 @@ img{max-width:100%;display:block;}
 
 /* ============ TARGET / PROBLEM ============ */
 .target-grid{display:grid;grid-template-columns:1fr;gap:8px;}
-.tc{background:#fff;border:0.5px solid #e5e0d8;padding:1rem;}
+.tc{background:#fff;border:0.5px solid #e5e0d8;padding:1rem;opacity:0;transform:translateY(18px);transition:opacity 0.6s cubic-bezier(.16,.84,.44,1), transform 0.6s cubic-bezier(.16,.84,.44,1);}
+.fade-section.visible .tc:nth-child(1){transition-delay:0.05s;}
+.fade-section.visible .tc:nth-child(2){transition-delay:0.18s;}
+.fade-section.visible .tc:nth-child(3){transition-delay:0.31s;}
+.fade-section.visible .tc{opacity:1;transform:translateY(0);}
 .tc-num{font-size:10px;color:#c0a860;font-weight:500;margin-bottom:6px;letter-spacing:0.08em;}
 .tc-who{font-size:13px;font-weight:500;color:#1a1a18;margin-bottom:6px;line-height:1.4;}
 .tc-pain{font-size:12px;color:#666;line-height:1.6;}
@@ -62,7 +66,10 @@ img{max-width:100%;display:block;}
 
 /* ============ INSTRUCTORS ============ */
 .inst-wrap{display:grid;grid-template-columns:1fr;gap:12px;}
-.inst-card{background:#fff;border:0.5px solid #e5e0d8;padding:1.25rem;}
+.inst-card{background:#fff;border:0.5px solid #e5e0d8;padding:1.25rem;opacity:0;transform:translateY(18px);transition:opacity 0.65s cubic-bezier(.16,.84,.44,1), transform 0.65s cubic-bezier(.16,.84,.44,1);}
+.fade-section.visible .inst-card:nth-child(1){transition-delay:0.08s;}
+.fade-section.visible .inst-card:nth-child(2){transition-delay:0.24s;}
+.fade-section.visible .inst-card{opacity:1;transform:translateY(0);}
 .inst-photo{width:100%;aspect-ratio:4/5;background:#f0ece4;overflow:hidden;margin-bottom:1rem;}
 .inst-photo img{width:100%;height:100%;object-fit:cover;}
 .inst-photo.logo-box{aspect-ratio:2/1;display:flex;align-items:center;justify-content:center;background:#f5f2ec;}
@@ -92,23 +99,47 @@ img{max-width:100%;display:block;}
 .video-block video{width:100%;display:block;aspect-ratio:16/9;object-fit:cover;background:#1a1a18;}
 .video-block.dark video{background:#1a1a18;}
 
+/* ============ PITCH (감성 타이틀 + 이성 서브타이틀) ============ */
+.pitch-sec{background:#fff;padding:3rem 1.5rem;text-align:center;border-bottom:0.5px solid #e5e0d8;}
+.pitch-main{font-size:19px;font-weight:700;color:#1a1a18;line-height:1.6;letter-spacing:-0.01em;margin-bottom:1.25rem;}
+.pitch-main .pg{color:#9a7c2e;}
+.pitch-div{width:24px;height:1px;background:#c0a860;margin:0 auto 1.25rem;}
+.pitch-sub{font-size:13px;color:#777;line-height:1.75;max-width:480px;margin:0 auto;}
+.pitch-sub strong{color:#1a1a18;font-weight:700;}
+
 /* ============ MID SHOWCASE (1 vertical reel + 2 photos) ============ */
 .showcase-wrap{background:#1a1a18;padding:3.5rem 0;}
 .showcase-statement{text-align:center;padding:0 1.25rem;margin-bottom:1.75rem;}
 .showcase-statement .ss-label{font-size:10px;letter-spacing:0.14em;color:#c0a860;text-transform:uppercase;margin-bottom:10px;}
 .showcase-statement .ss-main{font-size:18px;font-weight:700;color:#f5f2ec;line-height:1.5;letter-spacing:-0.01em;}
 .showcase-grid{display:grid;grid-template-columns:1fr;gap:10px;padding:0 1.25rem;}
-.showcase-box{background:#2a2a26;overflow:hidden;aspect-ratio:3/4;width:100%;}
-.showcase-box img, .showcase-box video{width:100%;height:100%;object-fit:cover;display:block;}
+.showcase-box{background:#2a2a26;overflow:hidden;aspect-ratio:3/4;width:100%;position:relative;cursor:pointer;}
+.showcase-box img, .showcase-box video{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.7s cubic-bezier(.16,.84,.44,1), filter 0.7s ease;}
+.showcase-box::after{content:"";position:absolute;inset:0;background:linear-gradient(to top, rgba(0,0,0,0.28), transparent 55%);opacity:0;transition:opacity 0.5s ease;pointer-events:none;}
+.showcase-box:hover img, .showcase-box:hover video{transform:scale(1.06);filter:brightness(1.04);}
+.showcase-box:hover::after{opacity:1;}
 .showcase-reel{aspect-ratio:9/16;max-width:340px;margin:0 auto;}
+@keyframes clip-reveal-up{
+  from{clip-path:inset(100% 0 0 0);}
+  to{clip-path:inset(0 0 0 0);}
+}
+@keyframes clip-img-counter{
+  from{transform:translateY(6%) scale(1.08);}
+  to{transform:translateY(0) scale(1);}
+}
+.fade-section.visible .showcase-reel{animation:clip-reveal-up 1s cubic-bezier(.65,0,.35,1) forwards;}
+.fade-section.visible .showcase-reel video{animation:clip-img-counter 1s cubic-bezier(.65,0,.35,1) forwards;}
 .video-caption{font-size:11px;color:#999;text-align:center;padding:10px 1.25rem 0;}
 .video-caption.on-dark{color:#777;}
 
 /* ============ GALLERY ============ */
 .gallery-wrap{background:#1a1a18;padding:2rem 0 4rem;}
 .gallery{display:grid;grid-template-columns:1fr;gap:3px;}
-.gbox{background:#2a2a26;overflow:hidden;min-height:240px;width:100%;}
-.gbox img, .gbox video{width:100%;height:100%;object-fit:cover;display:block;}
+.gbox{background:#2a2a26;overflow:hidden;min-height:240px;width:100%;position:relative;cursor:pointer;}
+.gbox img, .gbox video{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.7s cubic-bezier(.16,.84,.44,1), filter 0.7s ease;}
+.gbox::after{content:"";position:absolute;inset:0;background:linear-gradient(to top, rgba(0,0,0,0.28), transparent 55%);opacity:0;transition:opacity 0.5s ease;pointer-events:none;}
+.gbox:hover img, .gbox:hover video{transform:scale(1.06);filter:brightness(1.04);}
+.gbox:hover::after{opacity:1;}
 .gbox-tall{aspect-ratio:9/16;max-width:340px;margin:0 auto;}
 .gbox-wide{grid-column:1/-1;aspect-ratio:16/9;}
 .gbox-center{grid-column:1/-1;}
@@ -122,10 +153,10 @@ img{max-width:100%;display:block;}
 .info-val{font-size:12px;color:#666;line-height:1.7;}
 
 .schedule-wrap{display:grid;grid-template-columns:1fr;gap:10px;}
-.sched-card{border:0.5px solid #e5e0d8;padding:1rem 1.1rem;}
-.sched-tag{font-size:10px;letter-spacing:0.08em;color:#c0a860;font-weight:700;margin-bottom:6px;text-transform:uppercase;}
-.sched-time{font-size:13px;font-weight:700;color:#1a1a18;margin-bottom:8px;}
-.sched-dates{font-size:11px;color:#666;line-height:1.7;}
+.sched-card{background:#fff;border:0.5px solid #e5e0d8;border-left:3px solid #c0a860;padding:1.1rem 1.25rem;}
+.sched-tag{font-size:16px;letter-spacing:-0.01em;color:#1a1a18;font-weight:700;margin-bottom:8px;}
+.sched-time{font-size:12px;font-weight:700;color:#9a7c2e;letter-spacing:0.03em;margin-bottom:8px;text-transform:uppercase;}
+.sched-dates{font-size:11px;color:#777;line-height:1.7;}
 
 .info-prep-wrap{flex:1;min-width:0;width:100%;}
 .tool-table{width:100%;border-collapse:collapse;margin-top:8px;}
@@ -183,6 +214,12 @@ img{max-width:100%;display:block;}
   18%{left:120%;}
   100%{left:120%;}
 }
+@keyframes price-pulse{
+  0%{box-shadow:0 0 0 0 rgba(192,168,96,0.45), 0 4px 20px rgba(192,168,96,0.15);}
+  70%{box-shadow:0 0 0 12px rgba(192,168,96,0), 0 4px 20px rgba(192,168,96,0.15);}
+  100%{box-shadow:0 0 0 0 rgba(192,168,96,0), 0 4px 20px rgba(192,168,96,0.15);}
+}
+.pc.featured.pulse-once{animation:price-pulse 1.6s cubic-bezier(.4,0,.6,1) 1;}
 .pc-name{font-size:11px;color:#999;margin-bottom:8px;}
 .pc-amount{font-size:22px;color:#f5f2ec;font-weight:700;line-height:1;letter-spacing:-0.02em;}
 .pc-amount span{font-size:12px;color:#999;font-weight:400;}
@@ -208,6 +245,8 @@ img{max-width:100%;display:block;}
 /* DESKTOP — min-width breakpoint widens layout  */
 /* ============================================ */
 @media (min-width: 769px){
+  .pitch-sec{padding:4rem 2rem;}
+  .pitch-main{font-size:24px;}
   .video-block video{max-height:560px;}
   .showcase-grid{max-width:760px;margin:0 auto;grid-template-columns:1fr 1fr;gap:8px;}
   .showcase-reel{grid-column:1/3;aspect-ratio:9/16;max-width:420px;margin:0 auto;}
@@ -287,6 +326,13 @@ img{max-width:100%;display:block;}
   </div>
 </div>
 
+<!-- ============ PITCH (감성 + 이성) ============ -->
+<div class="pitch-sec">
+  <div class="pitch-main">AI라는 가장 트렌디한 도구를 빌려,<br><span class="pg">내 안의 패션 감성</span>을 마음껏 펼쳐내는 크리에이티브 워크숍</div>
+  <div class="pitch-div"></div>
+  <div class="pitch-sub"><strong>스튜디오, 모델, 촬영 비용 0원.</strong><br>오직 당신의 감성과 AI만으로 하이엔드 패션 비주얼을 완성합니다.</div>
+</div>
+
 <!-- ============ 이런 분께 ============ -->
 <div class="sec" style="background:#fff;border-bottom:0.5px solid #e5e0d8;">
   <div class="si">
@@ -313,7 +359,7 @@ img{max-width:100%;display:block;}
     <div class="ba">
       <div class="ba-col before">
         <div class="ba-lbl">Before</div>
-        <div class="ba-txt">"예쁜 AI 이미지는 만들었는데, 이게 내 브랜드인지 모르겠어"</div>
+        <div class="ba-txt">"예쁜 AI 이미지는 만들었는데, 정작 내가 원했던 그 ‘감성’과 ‘무드’가 안 살아요"</div>
       </div>
       <div class="ba-col after">
         <div class="ba-lbl">After</div>
@@ -352,7 +398,7 @@ img{max-width:100%;display:block;}
 <!-- ============ 미드 쇼케이스 (강의 목표 → 강사 소개 사이) ============ -->
 <div class="showcase-wrap">
   <div class="showcase-statement">
-    <div class="ss-label">8 Weeks Transformation</div>
+    <div class="ss-label">AI Fashion Design Lab · 8 Weeks Transformation</div>
     <div class="ss-main">8주, 당신의 포트폴리오가<br>완전히 달라집니다</div>
   </div>
   <div class="showcase-grid">
@@ -398,7 +444,7 @@ img{max-width:100%;display:block;}
       </div>
     </div>
     <div class="quote-box">
-      <div class="quote-txt">"인공지능은 새로운 예술의 학파다. 우리는 지금 당장 여기에 들어가야 한다. 아티스트들이 AI 밖에 머문다면, 미래는 지배적 사고의 언어만을 말하게 될 것이다. AI는 여기 있다. 그러니 사용하자, 그리고 잘 사용하자."</div>
+      <div class="quote-txt">"인공지능은 새로운 예술의 학파다. 우리는 지금 당장 여기에 들어가야 한다. 아티스트들이 AI 밖에 머문다면, 미래는 지배적 사고의 언어만을 말하게 될 것이다. ㅡ AI는 여기 있다. 그러니 사용하자, 그리고 잘 사용하자."</div>
       <div class="quote-src">Nick Knight — SHOWstudio Founder</div>
     </div>
   </div>
@@ -407,6 +453,7 @@ img{max-width:100%;display:block;}
 <!-- ============ 8주 커리큘럼 ============ -->
 <div class="sec">
   <div class="si">
+    <div class="eb-tag">AI FASHION DESIGN LAB</div>
     <div class="eyebrow">8주 커리큘럼</div>
     <h2 class="sec-title">Week by week</h2>
     <div class="bar"></div>
@@ -487,7 +534,7 @@ img{max-width:100%;display:block;}
   </div>
   <div class="info-row">
     <span class="info-key">장소</span>
-    <span class="info-val">플레니무아 스튜디오 — 서울 마포구 양화로6길 57-13 기단 302호<br><a href="https://naver.me/5CWRobGJ" target="_blank" style="color:#c0a860;">네이버 지도로 보기 ↗</a> · 오프라인 수업 후 VOD 온라인 제공</span>
+    <span class="info-val">플레니무아 스튜디오 — 서울 마포구 양화로6길 57-13 기단 302호<br>2·6호선 합정역 도보 5분 거리<br><a href="https://naver.me/5CWRobGJ" target="_blank" style="color:#c0a860;">네이버 지도로 보기 ↗</a></span>
   </div>
   <div class="info-row">
     <span class="info-key">정원</span>
@@ -496,7 +543,7 @@ img{max-width:100%;display:block;}
   <div class="info-row" style="gap:10px;">
     <span class="info-key">준비물</span>
     <div class="info-prep-wrap">
-      <div class="info-val" style="margin-bottom:4px;">노트북 필수 · 아래 세 가지 툴은 수업 시작 전 계정 생성 및 기본 사용법 숙지 권장</div>
+      <div class="info-val" style="margin-bottom:4px;">노트북 · 노트북 충전기 필수 · 아래 세 가지 툴은 수업 시작 전 계정 생성 및 기본 사용법 숙지 권장</div>
       <table class="tool-table">
       <thead><tr><th style="width:36%">툴</th><th style="width:14%">구분</th><th style="width:20%">플랜</th><th style="width:30%">활용 범위</th></tr></thead>
       <tbody>
@@ -509,7 +556,7 @@ img{max-width:100%;display:block;}
   </div>
   <div class="info-row">
     <span class="info-key">VOD</span>
-    <span class="info-val">오프라인 수강생 전원 VOD 재시청 포함 · 수강 기간 별도 안내</span>
+    <span class="info-val">오프라인 수강생 전원 VOD 재시청 포함 · 별도 안내</span>
   </div>
   <div class="info-row">
     <div class="nextstep-box">
@@ -580,10 +627,10 @@ img{max-width:100%;display:block;}
         <div class="pc-total strike">8주 총 800,000원</div>
         <div class="pc-desc">VOD 재시청 포함</div>
       </div>
-      <div class="pc featured">
+      <div class="pc featured" id="featuredPriceCard">
         <div class="pc-badge">얼리버드 — 20% 할인</div>
         <div class="pc-name">1회 수강료</div>
-        <div class="pc-amount">80,000<span>원</span></div>
+        <div class="pc-amount"><span id="priceCountUp" data-target="80000">0</span><span>원</span></div>
         <div class="pc-total gold">8주 총 640,000원</div>
         <div class="pc-desc">VOD 재시청 포함 · 얼리버드 한정 가격</div>
       </div>
@@ -596,7 +643,7 @@ img{max-width:100%;display:block;}
 
 <script>
 (function(){
-  var sections = document.querySelectorAll('.sec, .gallery-wrap, .info-sec, .price-sec');
+  var sections = document.querySelectorAll('.sec, .gallery-wrap, .info-sec, .price-sec, .showcase-wrap');
   sections.forEach(function(el){ el.classList.add('fade-section'); });
   var observer = new IntersectionObserver(function(entries){
     entries.forEach(function(entry){
@@ -607,6 +654,35 @@ img{max-width:100%;display:block;}
     });
   }, { threshold: 0.12 });
   sections.forEach(function(el){ observer.observe(el); });
+
+  // 가격 카운트업 + 펄스
+  var priceEl = document.getElementById('priceCountUp');
+  var priceCard = document.getElementById('featuredPriceCard');
+  if(priceEl && priceCard){
+    var counted = false;
+    var priceObserver = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting && !counted){
+          counted = true;
+          var target = parseInt(priceEl.getAttribute('data-target'), 10);
+          var start = null;
+          var duration = 1100;
+          function step(ts){
+            if(!start) start = ts;
+            var progress = Math.min((ts - start) / duration, 1);
+            var eased = 1 - Math.pow(1 - progress, 3);
+            priceEl.textContent = Math.floor(eased * target).toLocaleString();
+            if(progress < 1) requestAnimationFrame(step);
+            else priceEl.textContent = target.toLocaleString();
+          }
+          requestAnimationFrame(step);
+          priceCard.classList.add('pulse-once');
+          priceObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.4 });
+    priceObserver.observe(priceCard);
+  }
 })();
 </script>
 </body>
