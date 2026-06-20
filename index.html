@@ -153,11 +153,12 @@ img{max-width:100%;display:block;}
 .info-val{font-size:12px;color:#666;line-height:1.7;}
 
 .schedule-wrap{display:grid;grid-template-columns:1fr;gap:10px;margin-top:14px;}
-.sched-card{background:#fff;border:1px solid #e5e0d8;padding:1.1rem 1.2rem 1.2rem;position:relative;}
-.sched-badge{position:absolute;top:-11px;left:1.1rem;background:#1a1a18;color:#c0a860;font-size:9px;letter-spacing:0.1em;padding:3px 10px;text-transform:uppercase;font-weight:700;}
-.sched-tag{font-size:16px;color:#1a1a18;font-weight:700;margin:8px 0 8px;}
-.sched-time{font-size:11px;color:#666;margin-bottom:8px;}
-.sched-dates{font-size:11px;color:#999;line-height:1.7;}
+.sched-card{background:#fff;border:1px solid #e5e0d8;padding:1rem 1.2rem;position:relative;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;}
+.sched-main{flex-shrink:0;}
+.sched-badge{display:inline-block;background:#1a1a18;color:#c0a860;font-size:9px;letter-spacing:0.1em;padding:3px 10px;text-transform:uppercase;font-weight:700;margin-bottom:8px;}
+.sched-tag{font-size:16px;color:#1a1a18;font-weight:700;margin-bottom:4px;}
+.sched-time{font-size:11px;color:#666;}
+.sched-dates{font-size:11px;color:#999;line-height:1.6;text-align:right;flex:1;min-width:120px;}
 
 .info-prep-wrap{flex:1;min-width:0;width:100%;}
 .tool-table{width:100%;border-collapse:collapse;margin-top:8px;}
@@ -224,8 +225,10 @@ img{max-width:100%;display:block;}
 .pc-name{font-size:11px;color:#999;margin-bottom:8px;}
 .pc-amount{font-size:22px;color:#f5f2ec;font-weight:700;line-height:1;letter-spacing:-0.02em;}
 .pc-amount span{font-size:12px;color:#999;font-weight:400;}
+.pc.featured .pc-amount{color:#f0dca8;font-size:22px !important;}
+.pc.featured .pc-amount span{color:#c0a860;font-size:12px !important;}
 .pc-total{font-size:11px;color:#777;margin-top:4px;}
-.pc-total.gold{color:#c0a860;}
+.pc-total.gold{color:#c0a860;font-weight:700;}
 .strike{text-decoration:line-through;color:#555;}
 .pc-desc{font-size:11px;color:#777;margin-top:10px;line-height:1.55;border-top:0.5px solid #2a2a26;padding-top:10px;}
 .price-incl{font-size:11px;color:#999;margin-bottom:1.5rem;line-height:1.8;}
@@ -280,6 +283,8 @@ img{max-width:100%;display:block;}
   .info-row{flex-direction:row;align-items:flex-start;gap:16px;padding:1.1rem 2rem;max-width:760px;}
   .info-key{min-width:90px;flex-shrink:0;}
   .schedule-wrap{grid-template-columns:1fr 1fr;}
+  .sched-card{flex-direction:column;align-items:flex-start;}
+  .sched-dates{text-align:left;}
 
   .tool-table{table-layout:fixed;}
   .tool-table thead{display:table-header-group;}
@@ -298,6 +303,7 @@ img{max-width:100%;display:block;}
   .price-title{font-size:20px;}
   .price-cards{grid-template-columns:1fr 1fr;}
   .pc-amount{font-size:26px;}
+  .pc.featured .pc-amount{font-size:26px !important;}
 }
 
 /* ============ SCROLL FADE-IN (minimal) ============ */
@@ -406,8 +412,8 @@ img{max-width:100%;display:block;}
     <div class="showcase-box showcase-reel">
       <video src="https://je1bvtkg8omqlvhf.public.blob.vercel-storage.com/reel-01.mp4" autoplay muted loop playsinline></video>
     </div>
-    <div class="showcase-box"><img src="images/ai-lookbook-02.png" alt="룩북 02"></div>
     <div class="showcase-box"><img src="images/ai-lookbook-03.png" alt="룩북 03"></div>
+    <div class="showcase-box"><img src="images/ai-lookbook-02.png" alt="룩북 02"></div>
   </div>
 </div>
 
@@ -521,15 +527,19 @@ img{max-width:100%;display:block;}
       <div class="info-val" style="margin-bottom:4px;">아래 두 가지 일정 중 하나를 선택해 주세요 [택1]</div>
       <div class="schedule-wrap">
         <div class="sched-card">
-          <div class="sched-badge">Class A</div>
-          <div class="sched-tag">수요반</div>
-          <div class="sched-time">총 8회 · 19:00~21:30</div>
+          <div class="sched-main">
+            <div class="sched-badge">Class A</div>
+            <div class="sched-tag">수요반</div>
+            <div class="sched-time">총 8회 · 19:00~21:30</div>
+          </div>
           <div class="sched-dates">7월 8일, 15일, 22일, 29일<br>8월 5일, 12일, 19일, 26일</div>
         </div>
         <div class="sched-card">
-          <div class="sched-badge">Class B</div>
-          <div class="sched-tag">토요반</div>
-          <div class="sched-time">총 8회 · 16:00~18:30</div>
+          <div class="sched-main">
+            <div class="sched-badge">Class B</div>
+            <div class="sched-tag">토요반</div>
+            <div class="sched-time">총 8회 · 16:00~18:30</div>
+          </div>
           <div class="sched-dates">7월 11일, 18일, 25일<br>8월 1일, 8일, 15일, 22일, 29일</div>
         </div>
       </div>
@@ -633,7 +643,7 @@ img{max-width:100%;display:block;}
       <div class="pc featured" id="featuredPriceCard">
         <div class="pc-badge">얼리버드 — 20% 할인</div>
         <div class="pc-name">1회 수강료</div>
-        <div class="pc-amount"><span id="priceCountUp" data-target="80000">0</span><span>원</span></div>
+        <div class="pc-amount">80,000<span>원</span></div>
         <div class="pc-total gold">8주 총 640,000원</div>
         <div class="pc-desc">VOD 재시청 포함 · 얼리버드 한정 가격</div>
       </div>
@@ -658,27 +668,14 @@ img{max-width:100%;display:block;}
   }, { threshold: 0.12 });
   sections.forEach(function(el){ observer.observe(el); });
 
-  // 가격 카운트업 + 펄스
-  var priceEl = document.getElementById('priceCountUp');
+  // 가격 펄스 효과만 유지
   var priceCard = document.getElementById('featuredPriceCard');
-  if(priceEl && priceCard){
-    var counted = false;
+  if(priceCard){
+    var pulsed = false;
     var priceObserver = new IntersectionObserver(function(entries){
       entries.forEach(function(entry){
-        if(entry.isIntersecting && !counted){
-          counted = true;
-          var target = parseInt(priceEl.getAttribute('data-target'), 10);
-          var start = null;
-          var duration = 1100;
-          function step(ts){
-            if(!start) start = ts;
-            var progress = Math.min((ts - start) / duration, 1);
-            var eased = 1 - Math.pow(1 - progress, 3);
-            priceEl.textContent = Math.floor(eased * target).toLocaleString();
-            if(progress < 1) requestAnimationFrame(step);
-            else priceEl.textContent = target.toLocaleString();
-          }
-          requestAnimationFrame(step);
+        if(entry.isIntersecting && !pulsed){
+          pulsed = true;
           priceCard.classList.add('pulse-once');
           priceObserver.unobserve(entry.target);
         }
