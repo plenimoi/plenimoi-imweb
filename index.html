@@ -686,6 +686,18 @@ img{max-width:100%;display:block;}
     }, { threshold: 0.4 });
     priceObserver.observe(priceCard);
   }
+
+  // iframe 높이 자동 전달 (Imweb 등 외부 페이지에 임베드될 때 이중 스크롤 방지)
+  function sendHeight(){
+    var height = document.documentElement.scrollHeight;
+    window.parent.postMessage({ type: 'plenimoi-iframe-height', height: height }, '*');
+  }
+  window.addEventListener('load', sendHeight);
+  window.addEventListener('resize', sendHeight);
+  var resizeObserver = new ResizeObserver(sendHeight);
+  resizeObserver.observe(document.body);
+  setTimeout(sendHeight, 500);
+  setTimeout(sendHeight, 1500);
 })();
 </script>
 </body>
