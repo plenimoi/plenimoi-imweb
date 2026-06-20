@@ -88,6 +88,13 @@ img{max-width:100%;display:block;}
 .video-block{width:100%;}
 .video-block video{width:100%;display:block;aspect-ratio:16/9;object-fit:cover;background:#1a1a18;}
 .video-block.dark video{background:#1a1a18;}
+
+/* ============ MID SHOWCASE (4 photos + 1 vertical video) ============ */
+.showcase-wrap{background:#1a1a18;padding:2rem 0;}
+.showcase-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px;}
+.showcase-box{background:#2a2a26;overflow:hidden;aspect-ratio:3/4;}
+.showcase-box img, .showcase-box video{width:100%;height:100%;object-fit:cover;display:block;}
+.showcase-box.video-tall{grid-column:span 2;aspect-ratio:9/16;max-width:340px;margin:0 auto;}
 .video-caption{font-size:11px;color:#999;text-align:center;padding:10px 1.25rem 0;}
 .video-caption.on-dark{color:#777;}
 
@@ -95,7 +102,8 @@ img{max-width:100%;display:block;}
 .gallery-wrap{background:#1a1a18;padding:2rem 0;}
 .gallery{display:grid;grid-template-columns:1fr;gap:3px;}
 .gbox{background:#2a2a26;overflow:hidden;min-height:240px;}
-.gbox img{width:100%;height:100%;object-fit:cover;}
+.gbox img, .gbox video{width:100%;height:100%;object-fit:cover;display:block;}
+.gbox-tall{aspect-ratio:9/16;max-width:340px;margin:0 auto;}
 .gallery-caption{font-size:11px;color:#777;margin-top:14px;text-align:center;}
 
 /* ============ INFO ============ */
@@ -190,6 +198,8 @@ img{max-width:100%;display:block;}
 /* ============================================ */
 @media (min-width: 769px){
   .video-block video{max-height:560px;}
+  .showcase-grid{grid-template-columns:repeat(4,1fr);max-width:900px;margin:0 auto;padding:0 2rem;}
+  .showcase-box.video-tall{grid-column:span 4;max-width:280px;}
   .hero{flex-direction:row;min-height:680px;}
   .hero-img{order:2;width:62%;aspect-ratio:auto;position:relative;}
   .hero-img img{position:relative;z-index:0;}
@@ -209,9 +219,9 @@ img{max-width:100%;display:block;}
 
   .week-grid{grid-template-columns:1fr 1fr;}
 
-  .gallery{grid-template-columns:1fr 1fr;}
-  .gbox.wide{grid-column:1/3;min-height:420px;}
-  .gbox{min-height:340px;}
+  .gallery{grid-template-columns:1fr 1fr;align-items:start;}
+  .gbox-tall{grid-row:1/3;max-width:none;aspect-ratio:9/16;}
+  .gbox{min-height:280px;}
 
   .info-row{flex-direction:row;align-items:flex-start;gap:16px;padding:1.1rem 2rem;}
   .info-key{min-width:90px;flex-shrink:0;}
@@ -242,7 +252,7 @@ img{max-width:100%;display:block;}
 
 <!-- ============ HERO ============ -->
 <div class="hero">
-  <div class="hero-img"><img src="images/hero.jpg" alt="키비주얼"></div>
+  <div class="hero-img"><img src="images/ai-lookbook-01.png" alt="키비주얼"></div>
   <div class="hero-content">
     <div class="collab-row">
       <span class="collab-badge">Plénimoi</span>
@@ -322,9 +332,17 @@ img{max-width:100%;display:block;}
   </div>
 </div>
 
-<!-- ============ 영상 1 (강의 목표 → 강사 소개 사이) ============ -->
-<div class="video-block dark">
-  <video src="videos/intro.mp4" autoplay muted loop playsinline poster="images/video-intro-poster.jpg"></video>
+<!-- ============ 미드 쇼케이스 (강의 목표 → 강사 소개 사이) ============ -->
+<div class="showcase-wrap">
+  <div class="showcase-grid">
+    <div class="showcase-box"><img src="images/ai-lookbook-02.png" alt="룩북 02"></div>
+    <div class="showcase-box"><img src="images/ai-lookbook-03.png" alt="룩북 03"></div>
+    <div class="showcase-box"><img src="images/ai-lookbook-04.png" alt="룩북 04"></div>
+    <div class="showcase-box"><img src="images/ai-lookbook-05.png" alt="룩북 05"></div>
+    <div class="showcase-box video-tall">
+      <video src="videos/ai-01.mp4" autoplay muted loop playsinline></video>
+    </div>
+  </div>
 </div>
 
 <!-- ============ 강사 소개 ============ -->
@@ -335,7 +353,7 @@ img{max-width:100%;display:block;}
     <div class="bar"></div>
     <div class="inst-wrap">
       <div class="inst-card">
-        <div class="inst-photo"><img src="images/instructor.jpg" alt="강준수 디렉터"></div>
+        <div class="inst-photo"><img src="images/ai-lookbook-profile.jpg" alt="강준수 디렉터"></div>
         <div class="inst-sl">Tadow Studio</div>
         <div class="inst-name">강준수</div>
         <div class="inst-role">AI Production Director</div>
@@ -413,11 +431,11 @@ img{max-width:100%;display:block;}
   </div>
   <div class="si" style="padding:0 1.25rem;">
     <div class="gallery">
-      <div class="gbox wide" style="padding:0;">
-        <video src="videos/portfolio-highlight.mp4" autoplay muted loop playsinline poster="images/gallery-1.jpg" style="width:100%;height:100%;object-fit:cover;display:block;"></video>
+      <div class="gbox gbox-tall">
+        <video src="videos/ai-02.mp4" autoplay muted loop playsinline></video>
       </div>
-      <div class="gbox"><img src="images/gallery-2.jpg" alt="룩북"></div>
-      <div class="gbox"><img src="images/gallery-3.jpg" alt="캠페인 비주얼"></div>
+      <div class="gbox"><img src="images/ai-lookbook-06.png" alt="룩북 06"></div>
+      <div class="gbox"><img src="images/ai-lookbook-07.png" alt="룩북 07"></div>
     </div>
   </div>
   <div class="si" style="padding:0 1.25rem;"><p class="gallery-caption">1기 수강 후 실제 결과물로 업데이트 예정</p></div>
