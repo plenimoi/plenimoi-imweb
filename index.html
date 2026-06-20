@@ -13,7 +13,7 @@ img{max-width:100%;display:block;}
 
 /* ============ HERO ============ */
 .hero{position:relative;background:#1a1a18;display:flex;flex-direction:column;}
-.hero-img{width:100%;aspect-ratio:4/3;overflow:hidden;background:#2a2a26;order:1;position:relative;}
+.hero-img{width:100%;aspect-ratio:3/4;overflow:hidden;background:#2a2a26;order:1;position:relative;}
 .hero-img img{width:100%;height:100%;object-fit:cover;object-position:50% 20%;position:relative;z-index:0;}
 .hero-img::after{content:"";position:absolute;left:0;bottom:0;width:100%;height:40%;background:linear-gradient(to top, #1a1a18, transparent);z-index:1;pointer-events:none;}
 .hero-content{position:relative;z-index:2;padding:2rem 1.25rem;order:2;background:#1a1a18;}
@@ -95,7 +95,7 @@ img{max-width:100%;display:block;}
 .showcase-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px;}
 .showcase-box{background:#2a2a26;overflow:hidden;aspect-ratio:3/4;}
 .showcase-box img, .showcase-box video{width:100%;height:100%;object-fit:cover;display:block;}
-.showcase-box.video-tall{grid-column:span 2;aspect-ratio:9/16;max-width:340px;margin:0 auto;}
+.showcase-box:nth-child(5){grid-column:1/3;aspect-ratio:16/9;}
 .video-caption{font-size:11px;color:#999;text-align:center;padding:10px 1.25rem 0;}
 .video-caption.on-dark{color:#777;}
 
@@ -105,6 +105,7 @@ img{max-width:100%;display:block;}
 .gbox{background:#2a2a26;overflow:hidden;min-height:240px;}
 .gbox img, .gbox video{width:100%;height:100%;object-fit:cover;display:block;}
 .gbox-tall{aspect-ratio:9/16;max-width:340px;margin:0 auto;}
+.gbox-wide{grid-column:1/3;aspect-ratio:16/9;}
 .gallery-caption{font-size:11px;color:#777;margin-top:14px;text-align:center;}
 
 /* ============ INFO ============ */
@@ -199,14 +200,14 @@ img{max-width:100%;display:block;}
 /* ============================================ */
 @media (min-width: 769px){
   .video-block video{max-height:560px;}
-  .showcase-grid{grid-template-columns:repeat(4,1fr);max-width:900px;margin:0 auto;padding:0 2rem;}
-  .showcase-box.video-tall{grid-column:span 4;max-width:280px;}
+  .showcase-grid{grid-template-columns:repeat(5,1fr);max-width:1100px;margin:0 auto;padding:0 2rem;}
+  .showcase-box:nth-child(5){grid-column:auto;aspect-ratio:3/4;}
   .hero{flex-direction:row;min-height:680px;}
   .hero-img{order:2;width:62%;aspect-ratio:auto;position:relative;}
   .hero-img img{position:relative;z-index:0;}
   .hero-img::after{display:none;}
   .hero-img::before{content:"";position:absolute;left:0;top:0;width:30%;height:100%;background:linear-gradient(to right, #1a1a18, transparent);z-index:1;pointer-events:none;}
-  .hero-content{order:1;width:38%;padding:3rem 2.5rem;display:flex;flex-direction:column;justify-content:center;}
+  .hero-content{order:1;width:38%;padding:3rem 2.5rem;display:flex;flex-direction:column;justify-content:flex-end;}
   .hero-title{font-size:28px;}
 
   .sec{padding:3rem 2rem;}
@@ -216,13 +217,13 @@ img{max-width:100%;display:block;}
   .target-grid{grid-template-columns:repeat(3,1fr);}
   .ba{grid-template-columns:1fr 1.15fr;}
   .goal-grid{grid-template-columns:repeat(3,1fr);}
-  .inst-wrap{grid-template-columns:1fr 1.6fr;}
+  .inst-wrap{grid-template-columns:1fr 1.15fr;}
   .inst-photo.logo-box{aspect-ratio:4.51/1;}
 
   .week-grid{grid-template-columns:1fr 1fr;}
 
   .gallery{grid-template-columns:1fr 1fr;align-items:start;}
-  .gbox-tall{grid-row:1/3;max-width:none;aspect-ratio:9/16;}
+  .gbox-wide{grid-column:1/3;aspect-ratio:21/9;}
   .gbox{min-height:280px;}
 
   .info-row{flex-direction:row;align-items:flex-start;gap:16px;padding:1.1rem 2rem;}
@@ -341,9 +342,7 @@ img{max-width:100%;display:block;}
     <div class="showcase-box"><img src="images/ai-lookbook-03.png" alt="룩북 03"></div>
     <div class="showcase-box"><img src="images/ai-lookbook-04.png" alt="룩북 04"></div>
     <div class="showcase-box"><img src="images/ai-lookbook-05.png" alt="룩북 05"></div>
-    <div class="showcase-box video-tall">
-      <video src="videos/ai-01.mp4" autoplay muted loop playsinline></video>
-    </div>
+    <div class="showcase-box"><img src="images/ai-lookbook-06.png" alt="룩북 06"></div>
   </div>
 </div>
 
@@ -433,12 +432,11 @@ img{max-width:100%;display:block;}
   </div>
   <div class="si" style="padding:0 1.25rem;">
     <div class="gallery">
-      <div class="gbox gbox-tall">
+      <div class="gbox gbox-wide">
         <video src="videos/ai-02.mp4" autoplay muted loop playsinline></video>
       </div>
-      <div class="gbox"><img src="images/ai-lookbook-06.png" alt="룩북 06"></div>
+      <div class="gbox"><img src="images/ai-lookbook-01.png" alt="키비주얼"></div>
       <div class="gbox"><img src="images/ai-lookbook-07.png" alt="룩북 07"></div>
-      <div class="gbox"><img src="images/ai-lookbook-01.png" alt="룩북 01"></div>
     </div>
   </div>
   <div class="si" style="padding:0 1.25rem;"><p class="gallery-caption">1기 수강 후 실제 결과물로 업데이트 예정</p></div>
