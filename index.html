@@ -121,6 +121,7 @@ img{max-width:100%;display:block;}
 .sched-time{font-size:13px;font-weight:700;color:#1a1a18;margin-bottom:8px;}
 .sched-dates{font-size:11px;color:#666;line-height:1.7;}
 
+.info-prep-wrap{flex:1;min-width:0;width:100%;}
 .tool-table{width:100%;border-collapse:collapse;margin-top:8px;}
 .tool-table thead{display:none;}
 .tool-table, .tool-table tbody, .tool-table tr, .tool-table td{display:block;}
@@ -225,15 +226,15 @@ img{max-width:100%;display:block;}
   .gbox-wide{grid-column:1/3;aspect-ratio:21/9;}
   .gbox{min-height:280px;}
 
-  .info-row{flex-direction:row;align-items:flex-start;gap:16px;padding:1.1rem 2rem;}
+  .info-row{flex-direction:row;align-items:flex-start;gap:16px;padding:1.1rem 2rem;max-width:760px;}
   .info-key{min-width:90px;flex-shrink:0;}
   .schedule-wrap{grid-template-columns:1fr 1fr;}
 
-  .tool-table{table-layout:fixed;}
+  .tool-table{table-layout:auto;}
   .tool-table thead{display:table-header-group;}
   .tool-table, .tool-table tbody, .tool-table tr, .tool-table td, .tool-table th{display:revert;}
-  .tool-table th{font-size:10px;font-weight:500;color:#999;letter-spacing:0.06em;text-transform:uppercase;padding:5px 8px;border-bottom:0.5px solid #e5e0d8;text-align:left;}
-  .tool-table td{border:none;border-bottom:0.5px solid #e5e0d8;padding:7px 8px;font-size:12px;}
+  .tool-table th{font-size:10px;font-weight:500;color:#999;letter-spacing:0.06em;text-transform:uppercase;padding:8px 14px;border-bottom:0.5px solid #e5e0d8;text-align:left;}
+  .tool-table td{border:none;border-bottom:0.5px solid #e5e0d8;padding:12px 14px;font-size:12.5px;line-height:1.6;}
   .tool-table tr{border:none;margin-bottom:0;padding:0;}
   .tool-table tr:last-child td{border-bottom:none;}
   .tool-table td:first-child{font-size:12px;margin-bottom:0;}
@@ -469,8 +470,9 @@ img{max-width:100%;display:block;}
   </div>
   <div class="info-row" style="gap:10px;">
     <span class="info-key">준비물</span>
-    <div class="info-val" style="margin-bottom:4px;">노트북 필수 · 아래 세 가지 툴은 수업 시작 전 계정 생성 및 기본 사용법 숙지 권장</div>
-    <table class="tool-table">
+    <div class="info-prep-wrap">
+      <div class="info-val" style="margin-bottom:4px;">노트북 필수 · 아래 세 가지 툴은 수업 시작 전 계정 생성 및 기본 사용법 숙지 권장</div>
+      <table class="tool-table">
       <thead><tr><th style="width:36%">툴</th><th style="width:14%">구분</th><th style="width:20%">플랜</th><th style="width:30%">활용 범위</th></tr></thead>
       <tbody>
         <tr><td><span class="tool-name">ChatGPT (추천) or Claude</span></td><td><span class="badge-must">필수</span></td><td>유료 권장</td><td>프롬프트 작성, 아이디어 설계, 씬 구성 등 전 파트</td></tr>
@@ -478,6 +480,7 @@ img{max-width:100%;display:block;}
         <tr><td><span class="tool-name">Higgsfield</span></td><td><span class="badge-must">필수</span></td><td>Plus 이상</td><td>룩북 앵글샷, 캠페인 이미지 제작</td></tr>
       </tbody>
     </table>
+    </div>
   </div>
   <div class="info-row">
     <span class="info-key">VOD</span>
