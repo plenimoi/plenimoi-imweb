@@ -9,6 +9,8 @@
 
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'Noto Sans KR',sans-serif;background:#faf9f7;overflow-x:hidden;}
+img, video{-webkit-user-drag:none;user-drag:none;-webkit-touch-callout:none;pointer-events:auto;}
+img{-webkit-user-select:none;-moz-user-select:none;user-select:none;}
 img{max-width:100%;display:block;}
 
 /* ============ HERO ============ */
@@ -129,6 +131,8 @@ img{max-width:100%;display:block;}
 }
 .fade-section.visible .showcase-reel{animation:clip-reveal-up 1s cubic-bezier(.65,0,.35,1) forwards;}
 .fade-section.visible .showcase-reel video{animation:clip-img-counter 1s cubic-bezier(.65,0,.35,1) forwards;}
+.fade-section.visible .gbox-center{animation:clip-reveal-up 1s cubic-bezier(.65,0,.35,1) forwards;}
+.fade-section.visible .gbox-center video{animation:clip-img-counter 1s cubic-bezier(.65,0,.35,1) forwards;}
 .video-caption{font-size:11px;color:#999;text-align:center;padding:10px 1.25rem 0;}
 .video-caption.on-dark{color:#777;}
 
@@ -151,6 +155,8 @@ img{max-width:100%;display:block;}
 .info-row:last-child{border-bottom:none;}
 .info-key{font-size:13px;font-weight:500;color:#1a1a18;}
 .info-val{font-size:12px;color:#666;line-height:1.7;}
+.map-btn{display:inline-flex;align-items:center;gap:5px;margin-top:8px;padding:7px 14px;border:0.5px solid #c0a860;color:#9a7c2e;font-size:11px;letter-spacing:0.04em;text-decoration:none;font-weight:700;transition:background 0.3s ease, color 0.3s ease;}
+.map-btn:hover{background:#c0a860;color:#1a1a18;}
 
 .schedule-wrap{display:grid;grid-template-columns:1fr;gap:10px;margin-top:14px;}
 .sched-card{background:#fff;border:1px solid #e5e0d8;padding:1rem 1.2rem;position:relative;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;}
@@ -170,7 +176,7 @@ img{max-width:100%;display:block;}
   .tool-table td:nth-child(2){display:inline-block;margin-right:8px;}
 .tool-table td:nth-child(3)::before{content:"플랜: ";color:#999;font-weight:400;}
 .tool-table td:nth-child(3){font-weight:700;color:#1a1a18;}
-.tool-table td:nth-child(4)::before{content:"활용: ";color:#999;display:block;margin-top:2px;}
+.tool-table td:nth-child(4)::before{content:"활용: ";color:#999;}
 .badge-must{font-size:10px;padding:2px 6px;background:#f5f0e8;color:#8a6a20;border:0.5px solid #d4b870;white-space:nowrap;display:inline-block;vertical-align:middle;}
 .tool-name{font-weight:500;color:#1a1a18;}
 
@@ -410,7 +416,7 @@ img{max-width:100%;display:block;}
   </div>
   <div class="showcase-grid">
     <div class="showcase-box showcase-reel">
-      <video src="https://je1bvtkg8omqlvhf.public.blob.vercel-storage.com/reel-01.mp4" autoplay muted loop playsinline></video>
+      <video src="https://je1bvtkg8omqlvhf.public.blob.vercel-storage.com/reel-01.mp4" autoplay muted loop playsinline controlsList="nodownload nofullscreen noremoteplayback" disablePictureInPicture oncontextmenu="return false;"></video>
     </div>
     <div class="showcase-box"><img src="images/ai-lookbook-03.png" alt="룩북 03"></div>
     <div class="showcase-box"><img src="images/ai-lookbook-02.png" alt="룩북 02"></div>
@@ -508,7 +514,7 @@ img{max-width:100%;display:block;}
   <div class="si gallery-si" style="padding:0 1.25rem;">
     <div class="gallery">
       <div class="gbox gbox-tall gbox-center">
-        <video src="https://je1bvtkg8omqlvhf.public.blob.vercel-storage.com/reel-02.mp4" autoplay muted loop playsinline></video>
+        <video src="https://je1bvtkg8omqlvhf.public.blob.vercel-storage.com/reel-02.mp4" autoplay muted loop playsinline controlsList="nodownload nofullscreen noremoteplayback" disablePictureInPicture oncontextmenu="return false;"></video>
       </div>
       <div class="gbox"><img src="images/ai-lookbook-07.png" alt="룩북 07"></div>
       <div class="gbox"><img src="images/ai-lookbook-01.png" alt="키비주얼"></div>
@@ -547,7 +553,7 @@ img{max-width:100%;display:block;}
   </div>
   <div class="info-row">
     <span class="info-key">장소</span>
-    <span class="info-val">플레니무아 스튜디오 — 서울 마포구 양화로6길 57-13 기단 302호<br>2·6호선 합정역 도보 5분 거리<br><a href="https://naver.me/5CWRobGJ" target="_blank" style="color:#c0a860;">네이버 지도로 보기 ↗</a></span>
+    <span class="info-val">플레니무아 스튜디오 — 서울 마포구 양화로6길 57-13 기단 302호<br>2·6호선 합정역 도보 5분 거리<br><a href="https://naver.me/5CWRobGJ" target="_blank" class="map-btn">네이버 지도로 보기 ↗</a></span>
   </div>
   <div class="info-row">
     <span class="info-key">정원</span>
@@ -656,6 +662,13 @@ img{max-width:100%;display:block;}
 
 <script>
 (function(){
+  // 이미지/영상 우클릭 저장 방지
+  document.querySelectorAll('img, video').forEach(function(el){
+    el.addEventListener('contextmenu', function(e){ e.preventDefault(); });
+    el.setAttribute('draggable', 'false');
+    el.addEventListener('dragstart', function(e){ e.preventDefault(); });
+  });
+
   var sections = document.querySelectorAll('.sec, .gallery-wrap, .info-sec, .price-sec, .showcase-wrap');
   sections.forEach(function(el){ el.classList.add('fade-section'); });
   var observer = new IntersectionObserver(function(entries){
